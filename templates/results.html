@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comments Sentiment Analysis Results</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #34495e; /* Dark metallic background color */
+            margin: 0;
+            padding: 20px; 
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh; 
+            color: #ecf0f1; /* Light text color */
+        }
+
+        h1 {
+            text-align: center;
+            color: #ecf0f1; /* Light text color */
+        }
+
+        table {
+            width: 80%;
+            margin: 20px auto;
+            border-collapse: collapse;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            background-color: #bdc3c7; /* Light metallic background color */
+            border-radius: 8px;
+            overflow: hidden;
+            color: #2c3e50; /* Dark text color */
+        }
+
+        th,
+        td {
+            border: 1px solid #7f8c8d; /* Dark border color */
+            padding: 12px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #7f8c8d; /* Dark header background color */
+        }
+
+        .results {
+            border: 2px solid #7f8c8d; /* Dark border color */
+            border-radius: 10px;
+            display: flex;
+            justify-content: space-evenly;
+            width: 60%;
+            margin: auto;
+            background-color: #2c3e50; /* Dark metallic background color */
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        .svmresults {
+            display: flex;
+            flex-direction: column;
+            width: 20%;
+        }
+
+        .sentiments {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            margin: 5px 5px;
+        }
+
+        .verdict {
+            font-size: 30px;
+            text-align: center;
+            color: #ecf0f1; /* Light text color */
+        }
+
+    </style>
+</head>
+
+<body>
+    <div>
+        <h1>Comments Sentiment Analysis Results</h1>
+        <div class="results">
+            <div class="svmresults">
+                <div class="sentiments">
+                    <span class="title">Positive SVM: </span>
+                    <span class="value">{{possvm}}%</span>
+                </div>
+                <div class="sentiments">
+                    <span class="title">Negative SVM: </span>
+                    <span class="value">{{negsvm}}%</span>
+                </div>
+                <div class="sentiments">
+                    <span class="title">Neutral SVM: </span>
+                    <span class="value">{{neusvm}}%</span>
+                </div>
+            </div>
+
+            <div class="svmresults">
+                <h3 class="verdict">{{svmVerdict}}</h3>
+            </div>
+
+            <div class="svmresults">
+                <div class="sentiments">
+                    <span class="title">Positive RF: </span>
+                    <span class="value">{{posrm}}%</span>
+                </div>
+                <div class="sentiments">
+                    <span class="title">Negative RF: </span>
+                    <span class="value">{{negrm}}%</span>
+                </div>
+                <div class="sentiments">
+                    <span class="title">Neutral RF: </span>
+                    <span class="value">{{neurm}}%</span>
+                </div>
+            </div>
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Comment</th>
+                    <th>SVM Sentiment</th>
+                    <th>Random Forest Sentiment</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for _, row in comments_df.iterrows() %}
+                <tr>
+                    <td>{{ row['Comment']|safe }}</td>
+                    <td>{{ row['SVM Sentiment'] }}</td>
+                    <td>{{ row['Random Forest Sentiment'] }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+
+</html>
+
+
+
+
+
+
+

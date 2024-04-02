@@ -1,0 +1,2 @@
+api_key = 'AIzaSyCrYETSPibZ5ll8X6c8q3zGVZMOkPdq2Ko'
+API_KEY = 'AIzaSyCrYETSPibZ5ll8X6c8q3zGVZMOkPdq2Ko'
